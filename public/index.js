@@ -31,13 +31,14 @@ const saveSubmit = (e) => {
     const description = formTask['task-description'];
     const nameImage = formTask['file-task'].value.split('\\')[2];
     const imageURL =document.querySelector('#image').src;
-
+    
     if(title.value.length > 3 && description.value.length > 3){
     if (!editStatus) {
         saveTask(title.value, description.value, nameImage, imageURL);
+        document.querySelector('#image').src = '';
     } else {
         updateTask(idForEdit, {
-            'title': title.value, 'description': description.value
+            'title': title, 'description': description
         });
         editStatus = false;
         document.querySelector('#btn-task-save').innerText = 'Save';
